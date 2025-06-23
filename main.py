@@ -1,11 +1,11 @@
-from chatbot.bot import get_response
+from chatbot.bot import get_bot_response
 
 def main():
     while True:
-        query = input("Ask your question: ")
+        query = input("You : ")
         if query.lower() == "exit":
             break
-        print("Bot:", get_response(query))
+        print("Bot : ", get_bot_response(query))
 
 if __name__ == "__main__":
     main()

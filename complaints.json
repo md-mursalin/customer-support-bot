@@ -1,0 +1,30 @@
+[
+  {
+    "situation": "Battery drains quickly on Smartphone X",
+    "solution": "Please disable background apps and reduce screen brightness to improve battery life."
+  },
+  {
+    "situation": "Smart Watch not syncing with mobile app",
+    "solution": "Ensure Bluetooth is enabled and the app has location permissions."
+  },
+  {
+    "situation": "Noise-Canceling Headphones not charging",
+    "solution": "Check the charging cable and clean the USB port carefully."
+  },
+  {
+    "situation": "Smartphone X overheating during calls",
+    "solution": "Close unused apps and update to the latest software version."
+  },
+  {
+    "situation": "Fitness tracking inaccurate on Smart Watch",
+    "solution": "Ensure the watch is worn snugly and firmware is up-to-date."
+  },
+  {
+    "situation": "my phone display isnt working ",
+    "solution": "try changing the display  "
+  },
+  {
+    "situation": "My eyes are hurting",
+    "solution" : "beshi phone tiple emoni hobe -_- "
+  }
+]

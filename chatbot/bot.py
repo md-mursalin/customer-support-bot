@@ -32,24 +32,53 @@ def get_bot_response(user_input):
         """,
         (text_embedding,)
     )
-    result = cursor.fetchone()            # result stores the first row returned by the SQL query — as a Python tuple (situation, solution)
-
-    cursor.close()
-    conn.close()
+    result = cursor.fetchone()  # result stores the first row returned by the SQL query — as a Python tuple (situation, solution)
 
     if result:
-        situation, solution = result      # unpacks the tuple from result and stores it in 'situation' and 'solution' variables separately
-                                          #Only try to unpack if we actually got a row from the DB (thats why its under if statement cuz it can also return none if the complaints table is empty or something goes wrong
+        situation, solution = result  # unpacks the tuple from result and stores it in 'situation' and 'solution' variables separately
+                                      # Only try to unpack if we actually got a row from the DB (that's why it's under if-statement; it can return None if the complaints table is empty or something goes wrong)
                                     
         prompt = f"""The user said: "{user_input}".
 The most similar known complaint is: "{situation}".
 The stored solution is: "{solution}".
 
-Now please respond to the user in a helpful, friendly way and very briefly."""
+Now please respond to the user in a helpful and friendly way and very briefly."""
+
         response = ollama.chat(
             model='mistral',
             messages=[{'role': 'user', 'content': prompt}]
         )
-        return response['message']['content']
+
+        bot_reply = response['message']['content']
+
+        # Save chat history
+        cursor.execute(
+            """
+            INSERT INTO chat_history (user_id, message, response)
+            VALUES (%s, %s, %s)
+            """,
+            ('guest', user_input, bot_reply)  # Change 'guest' if you support real users
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return bot_reply
+
     else:
-        return "Sorry, I couldn't find anything similar in the complaints database. Try rephrasing."
+        # Fallback message when no similar match is found
+        fallback = "Sorry, I couldn't find anything similar in the complaints database. Try rephrasing."
+
+        # Also save this chat in history
+        cursor.execute(
+            """
+            INSERT INTO chat_history (user_id, message, response)
+            VALUES (%s, %s, %s)
+            """,
+            ('guest', user_input, fallback)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return fallback

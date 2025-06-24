@@ -20,7 +20,7 @@ A smart, vector-based customer support chatbot that helps users resolve complain
 - Supabase (Cloud PostgreSQL with `pgvector`)
 - SentenceTransformers (`paraphrase-MPNet-base-v2`)
 - psycopg2
-- .env + dotenv for secrets
+
 
 
 

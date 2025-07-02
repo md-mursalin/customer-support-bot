@@ -1,6 +1,6 @@
-# 🤖 Customer Support Bot (Ollama + Supabase)
+# 🤖 Customer Support Bot 
 
-A smart, vector-based customer support chatbot that helps users resolve complaints using semantic search and AI.
+A smart, vector-based customer support chatbot that helps users resolve complaints from private data source using semantic search and AI.
 
 ---
 

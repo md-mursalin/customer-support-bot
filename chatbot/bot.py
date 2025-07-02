@@ -37,7 +37,7 @@ def get_bot_response(user_input):
         # print(f"[DEBUG] Similarity: {similarity:.4f}")  
 
         # If similarity is too low, fallback
-        if similarity < 0.5:
+        if similarity < 0.3:
             fallback = "Sorry, I couldn't find anything similar in the complaints database. Try rephrasing."
             cursor.execute(
                 """
